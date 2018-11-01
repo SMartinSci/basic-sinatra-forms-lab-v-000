@@ -1,23 +1,18 @@
-require_relative 'config/environment'
 require 'sinatra/base'
-require 'bundler'
-Bundler.require
 
 class App < Sinatra::Base
-    get '/' do
-      erb :index
+    get '/newteam' do
+      erb :newteam
     end
 
-    get '/:newteam' do
-      erb params[:newteam].to_sym
+    post '/team' do
+      @name = params[:name]
+      @coach = params[:coach]
+      @pg = params[:pg]
+      @sg = params[:sg]
+      @pf = params[:pf]
+      @sf = params[:sf]
+      @C = params[:C]
+      erb :team
     end
-
-    get '/:form_type' do
-      erb params[:form_type].to_sym
-    end
-
-    post '/:form_type' do
-      erb :results
-    end
-
 end
